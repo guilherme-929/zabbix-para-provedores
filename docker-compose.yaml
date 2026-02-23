@@ -1,5 +1,3 @@
-version: '3.5'
-
 services:
   mariadb:
     container_name: mariadb
@@ -35,8 +33,6 @@ services:
     ports:
       - '10051:10051'
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro 
       - alertscripts:/usr/lib/zabbix/alertscripts
       - externalscripts:/usr/lib/zabbix/externalscripts
       - export:/var/lib/zabbix/export
@@ -145,8 +141,6 @@ services:
       - grafana_data:/var/lib/grafana 
       - grafana_grafana:/usr/share/grafana 
       - grafana_etc:/etc/grafana 
-      - /etc/localtime:/etc/localtime:ro 
-      - /etc/timezone:/etc/timezone:ro 
     environment:
       - GF_SERVER_ROOT_URL=http://grafana:3000
       - GF_SECURITY_ADMIN_PASSWORD=password
@@ -200,10 +194,12 @@ services:
       - MYSQL_DB_PASSWORD=${MYSQL_DB_PASSWORD}
       - MYSQL_DB_NAME=phpipam
       - MYSQL_DB_PORT=3306
+      - IPAM_DISABLE_INSTALLER=${IPAM_DISABLE_INSTALLER}
      ports:
       - '81:80'
   ftp:
     image: bogem/ftp
+    container_name: ftp
     restart: always
     volumes:
       - ftp:/home/vsftpd/
@@ -247,4 +243,4 @@ volumes:
   config:
   phpipam:
   phpipamweb:
-
+  ftp:
