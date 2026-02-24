@@ -1,4 +1,4 @@
-FROM mariadb
+FROM mariadb:11.4
 
 # define o mantedor da imagem
 LABEL maintainer="Guilherme"
