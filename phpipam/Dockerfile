@@ -11,9 +11,7 @@ RUN apt-get install apache2 libapache2-mod-php php php-mysql php-cli php-pear ph
     rm -rf /var/www/html
 
 
-# Install dumb-init
-#ADD https://github.com/Yelp/dumb-init/releases/download/v1.1.2/dumb-init_1.1.2_amd64.deb /tmp
-#RUN dpkg -i /tmp/dumb-init_1.1.2_amd64.deb
+
 
 # Download and extract phpIPAM
 ADD https://github.com/phpipam/phpipam/archive/master.zip /tmp
@@ -42,8 +40,8 @@ ENV APACHE_LOG_DIR /var/log/apache2/
 ENV APACHE_PID_FILE /var/apache.pid
 
 # phpIPAM Defaults
-ENV SSL_ENABLED false
-ENV PROXY_ENABLED false
+#ENV SSL_ENABLED false
+#ENV PROXY_ENABLED false
 
 # Expose port(s)
 EXPOSE 80 443
